@@ -1,8 +1,8 @@
 {
-  "name": "bahai-term-phoneme",
+  "name": "bahai-term-phonemes",
   "version": "1.0.0",
   "description": "Utility to identify and convert Baha'i terms to IPN compatible phonems for use in TTS engines",
-  "main": "bahai-term-phoneme.js",
+  "main": "bahai-term-phonemes.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,7 @@
     "tts",
     "ipn"
   ],
-  "author": "Chad Jones <chadananda@gmail.com> (http://bahai-education.org/)",
+  "author": "Chad Jones <chadananda@gmail.com> ",
   "license": "ISC",
   "repository": {
     "type": "git",

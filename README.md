@@ -1,15 +1,15 @@
-# Bahai-term-phoneme
+# Bahai-term-phonemes
 Simple utility to convert properly formatted HTML/UTF-8 Baha'i terms into IPN phoneme codes for correct pronunciation by TTS engines
  
 
 ### Install the interface module into your node project with:
 ``` 
-npm install --save bahai-term-phoneme
+npm install --save bahai-term-phonemes
 ```
 
 ### Functionality
 ``` Javascript
-var pho = require('bahai-term-phoneme'); 
+var pho = require('bahai-term-phonemes'); 
 
 pho.replace(str) 
 // identifies Baha'i terms in string and returns modified string replacing any such terms with double-bracketed IPN codes
