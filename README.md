@@ -17,4 +17,6 @@ pho.replace(str)
 // output: [[b @ h A: ? @U ? l l A: h]], Whose Mission
 ```
  
-  
+### Demo
+
+Browser jsfiddle demo: https://jsfiddle.net/chadananda/xa7dtvc3/
