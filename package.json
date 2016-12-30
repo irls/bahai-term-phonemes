@@ -12,5 +12,13 @@
     "ipn"
   ],
   "author": "Chad Jones <chadananda@gmail.com> (http://bahai-education.org/)",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chadananda/bahai-term-phonemes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chadananda/bahai-term-phonemes/issues"
+  },
+  "homepage": "https://github.com/chadananda/bahai-term-phonemes#readme"
 }
