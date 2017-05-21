@@ -1,6 +1,6 @@
 {
   "name": "bahai-term-phonemes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility to identify and convert Baha'i terms to IPN compatible phonems for use in TTS engines",
   "main": "bahai-term-phonemes.js",
   "scripts": {
