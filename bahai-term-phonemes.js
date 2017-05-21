@@ -15,6 +15,8 @@ function _is_term(term) {
   term = term.toLowerCase().trim();
   // trim leading and trailing punctuation
   var newterm = term.replace(/^[^a-zḥṭẓḍṣ_áíú]/g, '').replace(/[^a-zḥṭẓḍṣ_áíú]$/g, '');
+  // trim contraction suffix and possessives
+  newterm = newterm.replace(/[’']s$/iw,'').replace(/n[’']t$/iw,'')
   var isTerm = (newterm != newterm.replace(/[ẓḥṭẓḍṣ_áíú’‘]/g, ''));
   return isTerm;
 }
