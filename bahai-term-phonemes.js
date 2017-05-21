@@ -14,8 +14,8 @@ export default function (text) {
 function _is_term(term) {
   term = term.toLowerCase().trim();
   // trim leading and trailing punctuation
-  var newterm = term.replace(/^[^a-zḥṭẓḍ_áíú]/g, '').replace(/[^a-zḥṭẓḍ_áíú]$/g, '');
-  var isTerm = (newterm != newterm.replace(/[ẓḥṭẓḍ_áíú’‘]/g, ''));
+  var newterm = term.replace(/^[^a-zḥṭẓḍṣ_áíú]/g, '').replace(/[^a-zḥṭẓḍṣ_áíú]$/g, '');
+  var isTerm = (newterm != newterm.replace(/[ẓḥṭẓḍṣ_áíú’‘]/g, ''));
   return isTerm;
 }
 
@@ -30,9 +30,9 @@ function _strip_accents(term) {
 
 function _term_to_ipa(term) {
   var original = term;
-  var prefix = term.replace(/^([^a-zḥṭẓḍ_áíú]*).*/i, '$1');
-  var suffix = term.replace(/.*?([^a-zḥṭẓḍ_áíú]*)$/i, '$1');
-  var term = term.replace(/^[^a-zḥṭẓḍ_áíú]/ig, '').replace(/[^a-zḥṭẓḍ_áíú]$/ig, '');
+  var prefix = term.replace(/^([^a-zḥṭẓḍṣ_áíú]*).*/i, '$1');
+  var suffix = term.replace(/.*?([^a-zḥṭẓḍṣ_áíú]*)$/i, '$1');
+  var term = term.replace(/^[^a-zḥṭẓḍṣ_áíú]/ig, '').replace(/[^a-zḥṭẓḍṣ_áíú]$/ig, '');
 
    // Bahá’u’lláh ->  ba hah ow lah
   term = term.toLowerCase().trim();
