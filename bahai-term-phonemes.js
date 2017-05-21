@@ -3,7 +3,7 @@
 
 //var phonemes = {};
 
-export default function parse_words_replace_ipa(text) {
+export default function (text) {
   var words = text.split(' ');
   words.forEach(function(element, index, array){
     if (_is_term(element)) array[index] = _term_to_ipa(element)
