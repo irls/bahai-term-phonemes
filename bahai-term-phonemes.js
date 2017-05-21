@@ -1,9 +1,9 @@
 // code to translate one or more Baha'i terms to TTS phonemes
 //
 
-var phonemes = {};
+//var phonemes = {};
 
-function parse_words_replace_ipa(text) {
+export default function parse_words_replace_ipa(text) {
   var words = text.split(' ');
   words.forEach(function(element, index, array){
     if (_is_term(element)) array[index] = _term_to_ipa(element)
@@ -114,5 +114,5 @@ function _term_to_ipa(term) {
 }
 
 
-phonemes.replace = parse_words_replace_ipa;
-module.export = phonemes;
+//phonemes.replace = parse_words_replace_ipa;
+//module.export = phonemes;

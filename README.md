@@ -9,9 +9,11 @@ npm install --save bahai-term-phonemes
 
 ### Functionality
 ``` Javascript
-var pho = require('bahai-term-phonemes'); 
+import pho from 'bahai-term-phonemes'
 
-pho.replace(str) 
+
+
+pho(str) 
 // identifies Baha'i terms in string and returns modified string replacing any such terms with double-bracketed IPN codes
 // for example: pho.replace("Bahá’u’lláh, Whose Mission")
 // output: [[b @ h A: ? @U ? l l A: h]], Whose Mission
