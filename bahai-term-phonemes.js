@@ -1,5 +1,5 @@
 // code to translate one or more Baha'i terms to TTS phonemes
-// 
+//
 
 var phonemes = {};
 
@@ -8,13 +8,13 @@ function parse_words_replace_ipa(text) {
   words.forEach(function(element, index, array){
     if (_is_term(element)) array[index] = _term_to_ipa(element)
   });
-  return words.join(' '); 
-} 
- 
+  return words.join(' ');
+}
+
 function _is_term(term) {
   term = term.toLowerCase().trim();
   // trim leading and trailing punctuation
-  var newterm = term.replace(/^[^a-zḥṭẓḍ_áíú]/g, '').replace(/[^a-zḥṭẓḍ_áíú]$/g, ''); 
+  var newterm = term.replace(/^[^a-zḥṭẓḍ_áíú]/g, '').replace(/[^a-zḥṭẓḍ_áíú]$/g, '');
   var isTerm = (newterm != newterm.replace(/[ẓḥṭẓḍ_áíú’‘]/g, ''));
   return isTerm;
 }
@@ -32,7 +32,7 @@ function _term_to_ipa(term) {
   var original = term;
   var prefix = term.replace(/^([^a-zḥṭẓḍ_áíú]*).*/i, '$1');
   var suffix = term.replace(/.*?([^a-zḥṭẓḍ_áíú]*)$/i, '$1');
-  var term = term.replace(/^[^a-zḥṭẓḍ_áíú]/ig, '').replace(/[^a-zḥṭẓḍ_áíú]$/ig, ''); 
+  var term = term.replace(/^[^a-zḥṭẓḍ_áíú]/ig, '').replace(/[^a-zḥṭẓḍ_áíú]$/ig, '');
 
    // Bahá’u’lláh ->  ba hah ow lah
   term = term.toLowerCase().trim();
@@ -48,7 +48,7 @@ function _term_to_ipa(term) {
   term = term.replace(/-i-/g, 'i-')
    .replace(/’(d-D|_kh-_kh|_sh-_sh|_ch-_ch|_zh-_zh|b-b|p-p|j-j|t-t|d-d|r-r|z-z|s-s|f-f|q-q|k-k|l-l|m-m|n-n|h-h)/, '$1') ;
   // remove beginning or ending ayn and hamza
-  term = term.replace(/^[’‘]/, '').replace(/[’‘]$/, ''); 
+  term = term.replace(/^[’‘]/, '').replace(/[’‘]$/, '');
 
   var vowels = {
     'ay' : 'eI',
@@ -110,10 +110,9 @@ function _term_to_ipa(term) {
     term = term.replace(regex, consonants[key]+' ');
   }
 
-  return prefix +'[['+ term.trim() + ']]'+ suffix; 
+  return prefix +'[['+ term.trim() + ']]'+ suffix;
 }
 
 
-phoneme.replace = parse_words_replace_ipa;
-module.export = phoneme;
- 
+phonemes.replace = parse_words_replace_ipa;
+module.export = phonemes;
