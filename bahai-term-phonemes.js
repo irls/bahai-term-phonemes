@@ -2,7 +2,7 @@
 //
 
 
-export default function (text) {
+module.exports = function (text) {
   var words = text.split(' ');
   words.forEach(function(element, index, array){
     if (_is_term(element)) array[index] = _term_to_ipa(element)
