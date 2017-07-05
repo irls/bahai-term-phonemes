@@ -98,6 +98,7 @@ var term_phonemes = {
       'y'   : 'j',
       '’'   : '?',
       '‘'   : '?',
+      "'"   : '?',     
       '-'   : '?',
     };
     for(var key in vowels) if (key.length>1) {
