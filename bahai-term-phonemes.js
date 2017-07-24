@@ -120,7 +120,7 @@ var term_phonemes = {
     }
 
     if (includePunctuation) return prefix +'[['+ term.trim() + ']]'+ suffix
-     else return '[['+ term.trim() + ']]'
+     else return term.trim() 
   } 
 
 }

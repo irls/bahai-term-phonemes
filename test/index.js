@@ -16,21 +16,21 @@ describe('Bahá’í Terms to IPA Phonemes', function() {
   describe('Correctly replaces single Bahá’í terms', function () {
     it(`Correctly replaces term "Bahá’í"`, function () {
       let src = `Bahá’í`
-      let cmp = '[[b @ h A: ? i:]]'
+      let cmp = 'b @ h A: ? i:'
       let dest = terms.phonemes(src)
       if (dest!=cmp) console.log(dest)
       expect(dest===cmp).to.be.true;
     })
     it(`Correctly replaces term "Ma<u>sh</u>riqu’l-A<u>dh</u>kár"`, function () {
       let src = `Ma<u>sh</u>riqu’l-A<u>dh</u>kár`
-      let cmp = '[[m @ s  r e g @U ? l ? @ z k A: r]]'
+      let cmp = 'm @ s  r e g @U ? l ? @ z k A: r'
       let dest = terms.phonemes(src)
       if (dest!=cmp) console.log(dest)
       expect(dest===cmp).to.be.true;
     })  
     it(`Correctly replaces term "‘Abdu’l-Bahá"`, function () {
       let src = `‘Abdu’l-Bahá`
-      let cmp = '[[@ b d @U ? l ? b @ h A:]]'
+      let cmp = '@ b d @U ? l ? b @ h A:'
       let dest = terms.phonemes(src)
       if (dest!=cmp) console.log(dest)
       expect(dest===cmp).to.be.true;
@@ -38,7 +38,7 @@ describe('Bahá’í Terms to IPA Phonemes', function() {
 
     it(`Correctly replaces term "‘Abdu’l-Ḥamíd"`, function () {
       let src = `‘Abdu’l-Ḥamíd`
-      let cmp = '[[@ b d @U ? l ? h @ m i: d]]'
+      let cmp = '@ b d @U ? l ? h @ m i: d'
       let dest = terms.phonemes(src)
       if (dest!=cmp) console.log(dest)
       expect(dest===cmp).to.be.true;
@@ -46,7 +46,7 @@ describe('Bahá’í Terms to IPA Phonemes', function() {
 
     it(`Correctly replaces term "‘Abdu’l-Ḥamíd’s" (with possessive)`, function () {
       let src = `‘Abdu’l-Ḥamíd’s`
-      let cmp = '[[@ b d @U ? l ? h @ m i: d s]]'
+      let cmp = '@ b d @U ? l ? h @ m i: d s'
       let dest = terms.phonemes(src)
       if (dest!=cmp) console.log(dest)
       expect(dest===cmp).to.be.true;
