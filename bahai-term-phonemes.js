@@ -36,9 +36,9 @@ var term_phonemes = {
 
   phonemes:  function (term, includePunctuation=false) {
     var original = term;
-    var prefix = term.replace(/^([^a-zḥṭẓḍṣ_áíú]*).*/i, '$1')
-    var suffix = term.replace(/.*?([^a-zḥṭẓḍṣ_áíú]*)$/i, '$1')
-    var term = term.replace(/^[^a-zḥṭẓḍṣ_áíú]/ig, '').replace(/[^a-zḥṭẓḍṣ_áíú]$/ig, '')
+    var prefix = term.replace(/^([^<a-zḥṭẓḍṣ_áíú]*).*/i, '$1')
+    var suffix = term.replace(/.*?([^>a-zḥṭẓḍṣ_áíú]*)$/i, '$1')
+    var term = term.replace(/^[^<a-zḥṭẓḍṣ_áíú]/ig, '').replace(/[^>a-zḥṭẓḍṣ_áíú]$/ig, '')
 
     // Bahá’u’lláh ->  ba hah ow lah
     term = term.toLowerCase().trim();
