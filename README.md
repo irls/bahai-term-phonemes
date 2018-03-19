@@ -1,5 +1,5 @@
 # Bahai-term-phonemes
-Simple utility to convert properly formatted HTML/UTF-8 Baha'i terms into IPN phoneme codes for correct pronunciation by TTS engines
+Simple utility to convert properly formatted HTML/UTF-8 Baha'i terms into IPA phoneme codes for correct pronunciation by TTS engines
  
 
 ### Install the interface module into your node project with:
