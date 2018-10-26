@@ -1,5 +1,8 @@
 // Translate Baha'i terms to IPA phonemes for use in TTS
 
+var fse = require('fs-extra');
+var md5 = require('md5');
+
 
 var term_phonemes = {
 
@@ -34,7 +37,7 @@ var term_phonemes = {
     return term.replace(chars_rgx, function(match){ return transl[match]  }) 
   },
 
-  phonemes:  function (term, includePunctuation=false) {
+  phonemes:  function (term, includePunctuation=false, log = 'bterms') {
     var original = term;
     var prefix = term.replace(/^([^<a-zḥṭẓḍṣ_áíú]*).*/i, '$1')
     var suffix = term.replace(/.*?([^>a-zḥṭẓḍṣ_áíú]*)$/i, '$1')
@@ -47,7 +50,7 @@ var term_phonemes = {
     // remove any remaining tags and whitespace
     term = term.replace(/<(.|\n)*?>/g, '').replace(/\s+/g, ' ').trim();
     // replace any letters that sound like another
-    term = term.replace(/ḍ/g, 'z').replace(/_dh/g, 'z').replace(/_th/g, 's').replace(/u/g, 'o').replace(/aw/g, 'o');
+    term = term.replace(/ḍ/g, 'z').replace(/_dh/g, 'z').replace(/_th/g, 's').replace(/aw/g, 'o');
     term = term.replace(/_gh/g, 'g');
     // replace apostrophe ’s with just s 
     term = term.replace(/([\’\‘\'\`]s)$/m, 's') 
@@ -62,12 +65,13 @@ var term_phonemes = {
       'ay' : 'eI',
       'iy' : 'eI',
       'ih' : 'eI',
-      'a'  : '@',
+      //'a'  : '@',
       'á'  : 'A:',
       'i'  : 'e',
       'í'  : 'i:',
       'o'  : '@U',
-      'ú'  : 'u:'
+      'ú'  : 'u:',
+      'u'  : 'oU'
     };
     var consonants = {
       '_kh' : 'x',
@@ -102,21 +106,29 @@ var term_phonemes = {
       '-'   : '?',
     };
     for(var key in vowels) if (key.length>1) {
-      var regex = new RegExp(key, 'gi');
-      term = term.replace(regex, vowels[key]+' ');
+      var regex = new RegExp(key + '(?!\\])', 'gi');
+      term = term.replace(regex, '[' + vowels[key]+']');
     }
     for(var key in consonants) if (key.length>1) {
-      var regex = new RegExp(key, 'gi');
-      term = term.replace(regex, consonants[key]+' ');
+      var regex = new RegExp(key + '(?!\\])', 'gi');
+      term = term.replace(regex, '[' + consonants[key]+']');
     }
 
     for(var key in vowels) if (key.length<2) {
-      var regex = new RegExp(key, 'gi');
-      term = term.replace(regex, vowels[key]+' ');
+      var regex = new RegExp(key + '(?!\\])', 'gi');
+      term = term.replace(regex, '[' + vowels[key]+']');
     }
     for(var key in consonants) if (key.length<2) {
-      var regex = new RegExp(key, 'gi');
-      term = term.replace(regex, consonants[key]+' ');
+      var regex = new RegExp(key + '(?!\\])', 'gi');
+      term = term.replace(regex, '[' + consonants[key]+']');
+    }
+    term = term.replace(/[\[\]]/g, '').replace(/[\?]{2,}/g, '?')//.replace(/\?\:/g, '?').replace(/\:\?/g, ':')
+    
+    if (log) {
+      let path = __dirname + '/../../' + log.replace(/^\//, '').replace(/\/$/, '') + '/';
+      path+= md5(original);
+      fse.outputFile(path, original.replace(/^[“‘”’"'-]/, '') + "\r\n" + term.trim());
+      
     }
 
     if (includePunctuation) return prefix +'[['+ term.trim() + ']]'+ suffix
