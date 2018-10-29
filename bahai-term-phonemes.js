@@ -105,21 +105,22 @@ var term_phonemes = {
       "'"   : '?',     
       '-'   : '?',
     };
+    var lookahead = '(?![\\:\\]])';
     for(var key in vowels) if (key.length>1) {
-      var regex = new RegExp(key + '(?!\\])', 'gi');
+      var regex = new RegExp(key + lookahead, 'gi');
       term = term.replace(regex, '[' + vowels[key]+']');
     }
     for(var key in consonants) if (key.length>1) {
-      var regex = new RegExp(key + '(?!\\])', 'gi');
+      var regex = new RegExp(key + lookahead, 'gi');
       term = term.replace(regex, '[' + consonants[key]+']');
     }
 
     for(var key in vowels) if (key.length<2) {
-      var regex = new RegExp(key + '(?!\\])', 'gi');
+      var regex = new RegExp(key + lookahead, 'gi');
       term = term.replace(regex, '[' + vowels[key]+']');
     }
     for(var key in consonants) if (key.length<2) {
-      var regex = new RegExp(key + '(?!\\])', 'gi');
+      var regex = new RegExp(key + lookahead, 'gi');
       term = term.replace(regex, '[' + consonants[key]+']');
     }
     term = term.replace(/[\[\]]/g, '').replace(/[\?]{2,}/g, '?')//.replace(/\?\:/g, '?').replace(/\:\?/g, ':')
