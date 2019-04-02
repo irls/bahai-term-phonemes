@@ -1,40 +1,40 @@
 // Translate Baha'i terms to IPA phonemes for use in TTS
 
-var fse = require('fs-extra');
+// var fse = require('fs-extra');
 var md5 = require('md5');
 
 
 var term_phonemes = {
 
   isPossibleTerm: function (term) {
-    term = term.toLowerCase().trim() 
+    term = term.toLowerCase().trim()
     // trim leading and trailing punctuation
-    var newterm = term.replace(/^[^a-zḥṭẓḍṣ_áíú]/g, '').replace(/[^a-zḥṭẓḍṣ_áíú]$/g, '') 
+    var newterm = term.replace(/^[^a-zḥṭẓḍṣ_áíú]/g, '').replace(/[^a-zḥṭẓḍṣ_áíú]$/g, '')
     // trim contraction suffix and possessives
-    newterm = newterm.replace(/[‘’']s$/im, '').replace(/n[‘’']t$/im, '') 
+    newterm = newterm.replace(/[‘’']s$/im, '').replace(/n[‘’']t$/im, '')
     //console.log(newterm)
-    var isTerm = (newterm != newterm.replace(/[ẓḥṭẓḍṣ_áíú’‘']/g, '')) 
+    var isTerm = (newterm != newterm.replace(/[ẓḥṭẓḍṣ_áíú’‘']/g, ''))
     //console.log(newterm)
-    return isTerm 
+    return isTerm
   },
 
   parse: function (text) {
     if (!text) return
     var trm = this
-    var words = text.split(' ') 
+    var words = text.split(' ')
     words.forEach(function(element, index, array){
       if (trm.isPossibleTerm(element)) array[index] = trm.phonemes(element, true)
-    }) 
-    return words.join(' ') 
-  }, 
+    })
+    return words.join(' ')
+  },
 
   strip_accents: function (term) {
     var in_chrs =  'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
         out_chrs = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY',
-        transl = {} 
-    eval('var chars_rgx = /['+in_chrs+']/g') 
+        transl = {}
+    eval('var chars_rgx = /['+in_chrs+']/g')
     for(var i = 0;  i < in_chrs.length;  i++){ transl[in_chrs.charAt(i)] = out_chrs.charAt(i)  }
-    return term.replace(chars_rgx, function(match){ return transl[match]  }) 
+    return term.replace(chars_rgx, function(match){ return transl[match]  })
   },
 
   phonemes:  function (term, includePunctuation=false, log = 'bterms') {
@@ -52,8 +52,8 @@ var term_phonemes = {
     // replace any letters that sound like another
     term = term.replace(/ḍ/g, 'z').replace(/_dh/g, 'z').replace(/_th/g, 's').replace(/aw/g, 'o');
     term = term.replace(/_gh/g, 'g');
-    // replace apostrophe ’s with just s 
-    term = term.replace(/([\’\‘\'\`]s)$/m, 's') 
+    // replace apostrophe ’s with just s
+    term = term.replace(/([\’\‘\'\`]s)$/m, 's')
 
     // connectors
     term = term.replace(/-i-/g, 'i-')
@@ -102,7 +102,7 @@ var term_phonemes = {
       'y'   : 'j',
       '’'   : '?',
       '‘'   : '?',
-      "'"   : '?',     
+      "'"   : '?',
       '-'   : '?',
     };
     var lookahead = '(?![\\:\\]])';
@@ -124,19 +124,18 @@ var term_phonemes = {
       term = term.replace(regex, '[' + consonants[key]+']');
     }
     term = term.replace(/[\[\]]/g, '').replace(/[\?]{2,}/g, '?')//.replace(/\?\:/g, '?').replace(/\:\?/g, ':')
-    
+
     if (log) {
       let path = __dirname + '/../../' + log.replace(/^\//, '').replace(/\/$/, '') + '/';
       path+= md5(original);
-      fse.outputFile(path, original.replace(/^[“‘”’"'-]/, '') + "\r\n" + term.trim());
-      
+      // fse.outputFile(path, original.replace(/^[“‘”’"'-]/, '') + "\r\n" + term.trim());
     }
 
     if (includePunctuation) return prefix +'[['+ term.trim() + ']]'+ suffix
-     else return term.trim() 
-  } 
+     else return term.trim()
+  }
 
 }
 
-  
+
 module.exports = term_phonemes
