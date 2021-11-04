@@ -15,12 +15,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chadananda/bahai-term-phonemes.git"
+    "url": "git+https://github.com/irls/bahai-term-phonemes.git"
   },
   "bugs": {
-    "url": "https://github.com/chadananda/bahai-term-phonemes/issues"
+    "url": "https://github.com/irls/bahai-term-phonemes/issues"
   },
-  "homepage": "https://github.com/chadananda/bahai-term-phonemes#readme",
+  "homepage": "https://github.com/irls/bahai-term-phonemes#readme",
   "devDependencies": {
     "chai": "^4.0.2",
     "mocha": "^3.4.2"
